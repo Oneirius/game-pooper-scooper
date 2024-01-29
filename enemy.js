@@ -29,6 +29,9 @@ class Enemy {
         // Set enemy movement direction
         this.moveDirection = direction
 
+        this.poopFrame = 0;
+        this.poopSpawnFrame = 10;
+
         // Set element position
         this.updatePosition();
         this.updateEdges();
@@ -51,6 +54,7 @@ class Enemy {
         }
         this.updatePosition();
         this.updateEdges();
+        this.spawnPoop();
         this.checkForBoundaries();
     }
     checkForBoundaries() {
@@ -66,5 +70,11 @@ class Enemy {
         this.element.remove();
         const enemyIndex = gameEnemies.indexOf(this);
         gameEnemies.splice(enemyIndex, 1);
+    }
+    spawnPoop() {
+        this.poopFrame ++;
+        if (this.poopFrame % this.poopSpawnFrame === 0) {
+            gamePoops.push(new Poop(this.x, this.y, this.width));
+        }
     }
 }
