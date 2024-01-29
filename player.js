@@ -34,7 +34,6 @@ class Player {
     updateElementPosition() {
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
-        console.log(this.element.getBoundingClientRect().width, this.width)
     }
     updateEdges() {
         this.leftEdge = this.x;

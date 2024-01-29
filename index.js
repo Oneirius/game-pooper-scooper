@@ -5,11 +5,15 @@
 const gameBoardElement = document.querySelector("#game-board");
 const gameBoardWidth = gameBoardElement.getBoundingClientRect().width;
 const gameBoardHeight = gameBoardElement.getBoundingClientRect().height;
-console.log(gameBoardWidth, gameBoardHeight);
 
 
 // Create player entity
 const player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
+
+const gameEnemies = [];
+gameEnemies.push(new Enemy(5, "right", "left"));
+
+
 
 
 requestAnimationFrame(gameLoop);
@@ -17,6 +21,9 @@ requestAnimationFrame(gameLoop);
 
 function gameLoop() {
     player.move();
-    //console.log("Brain");
+    gameEnemies.forEach((enemy)=> {
+        enemy.move();
+    })
+    //console.log(gameEnemies);
     requestAnimationFrame(gameLoop);
 }
