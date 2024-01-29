@@ -19,7 +19,10 @@ class Enemy {
         switch(spawnEdge) {
             case "right":        
                 this.x = gameBoardWidth-32;
-                this.y = Math.floor(Math.random()*gameBoardHeight-this.height);
+                this.y = Math.floor((Math.random()*gameBoardHeight)-this.height);
+                if (this.y < 0) {
+                    this.y = 0;
+                }
                 break;
         }
 
@@ -41,7 +44,6 @@ class Enemy {
         this.bottomEdge = this.y + this.height;
     }
     move() {
-        console.log(this.moveDirection)
         switch(this.moveDirection) {
             case "left":
                 this.x -= this.velocity;
@@ -51,10 +53,10 @@ class Enemy {
         this.updateEdges();
         this.checkForBoundaries();
     }
-    checkForBoundaries(direction) {
-        switch(direction) {
+    checkForBoundaries() {
+        switch(this.moveDirection) {
             case "left":
-                if (this.x <= 0 - this.width) {
+                if (this.x <= (0 - this.width)) {
                     this.deSpawn();
                 }
                 break;
@@ -62,7 +64,7 @@ class Enemy {
     }
     deSpawn() {
         this.element.remove();
-        const enemyIndex = game.enemies.indexOf(this);
-        game.enemies.splice(enemyIndex, 1);
+        const enemyIndex = gameEnemies.indexOf(this);
+        gameEnemies.splice(enemyIndex, 1);
     }
 }
