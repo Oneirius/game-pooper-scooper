@@ -36,3 +36,12 @@ h1 {
     top: 0px;
     left: 0px;
 }
+
+.enemy {
+    width: 32px;
+    height: 32px;
+    background-color: #c00;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
