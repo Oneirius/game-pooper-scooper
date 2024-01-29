@@ -7,6 +7,9 @@ class Player {
         // Create Player Element
         this.element = document.createElement("div");
 
+        // Add Player Element to the baord
+        gameBoardElement.appendChild(this.element);
+
         // Declare Player Element attributes
         this.element.setAttribute("id", "player");
         this.element.style.left = `${this.x}px`;
@@ -17,13 +20,7 @@ class Player {
         this.height = this.element.getBoundingClientRect().height;
 
         // Collision box edges
-        this.leftEdge = this.x;
-        this.rightEdge = this.x + this.width;
-        this.topEdge = this.y;
-        this.bottomEdge = this.y + this.height;
-
-        // Add Player Element to the baord
-        gameBoardElement.appendChild(this.element);
+        this.updateEdges();
 
         // Declare player movement variables
         this.velocity = 5;
@@ -37,6 +34,13 @@ class Player {
     updateElementPosition() {
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
+        console.log(this.element.getBoundingClientRect().width, this.width)
+    }
+    updateEdges() {
+        this.leftEdge = this.x;
+        this.rightEdge = this.x + this.width;
+        this.topEdge = this.y;
+        this.bottomEdge = this.y + this.height;
     }
     move() {
         // Check for Left Movement Key Up/Down
@@ -90,10 +94,34 @@ class Player {
                 this.verVelPos = 0;
             }
         })
-
+        // Udate internal player x/y position
         this.x += this.horVelPos - this.horVelNeg;
         this.y += this.verVelPos - this.verVelNeg;
-        this.updateElementPosition();
-    }
 
+        // Check for boundaries
+        this.updateElementPosition();
+        this.updateEdges();
+        this.checkBoundaries();
+        //console.log(this.leftEdge, this.width, gameBoardWidth);
+    }
+    checkBoundaries() {
+        // Check & enforce left Boundary
+        if (this.x < 0) {
+            this.x = 0;
+        }
+        // Check & enforce Right boundary
+        if (this.rightEdge > gameBoardWidth) {
+            this.x = gameBoardWidth - this.width;
+        }
+        // Check & enforce top boundary
+        if (this.y < 0) {
+            this.y = 0;
+        }
+        // Check and enforce bottom boundary
+        if (this.bottomEdge > gameBoardHeight) {
+            this.y = gameBoardHeight - this.height;
+        }
+        this.updateElementPosition();
+        this.updateEdges();
+    }
 }

@@ -2,11 +2,14 @@
 // console.log("JS is working!");
 
 // Declare game board entity
-gameBoardElement = document.querySelector("#game-board");
+const gameBoardElement = document.querySelector("#game-board");
+const gameBoardWidth = gameBoardElement.getBoundingClientRect().width;
+const gameBoardHeight = gameBoardElement.getBoundingClientRect().height;
+console.log(gameBoardWidth, gameBoardHeight);
 
 
 // Create player entity
-const player = new Player(384, 308);
+const player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
 
 
 requestAnimationFrame(gameLoop);
