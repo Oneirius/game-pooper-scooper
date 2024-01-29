@@ -45,3 +45,10 @@ h1 {
     top: 0px;
     left: 0px;
 }
+
+.poop {
+    background-color: #422;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+}

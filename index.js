@@ -13,6 +13,7 @@ const player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
 let gameFrames = 0;
 let enemySpawnFrame = 200;
 const gameEnemies = [];
+const gamePoops = [];
 
 
 
@@ -35,7 +36,9 @@ function gameLoop() {
 
 function enemySpawner() {
     if (gameFrames % enemySpawnFrame === 0) {
+        // Spawn Enemy and add to gameEnemies array
         gameEnemies.push(new Enemy(5, "right", "left"));
+        // Reduce enemy spawn timer
         enemySpawnFrame --;
     }
 }
