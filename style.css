@@ -38,8 +38,8 @@ h1 {
 }
 
 .enemy {
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     background-color: #c00;
     position: absolute;
     top: 0px;

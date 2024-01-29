@@ -122,5 +122,19 @@ class Player {
         }
         this.updateElementPosition();
         this.updateEdges();
+        this.collisionCheck();
+    }
+    collisionCheck() {
+        gameEnemies.forEach((enemy) => {
+            if (
+                this.leftEdge < enemy.rightEdge &&
+                this.rightEdge > enemy.leftEdge &&
+                this.topEdge < enemy.bottomEdge &&
+                this.bottomEdge > enemy.topEdge
+            ){
+                console.log("collision detected!")
+            }
+
+        })
     }
 }
