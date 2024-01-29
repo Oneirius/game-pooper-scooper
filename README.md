@@ -34,3 +34,7 @@ The approach for this game is to use classes and object-oriented programming.
 ## Project Planning
 
 I split my project into smaller features and added them to a Trello board: https://trello.com/b/g8gRWFIN/ironhack-project-1-game-pooper-scooper
+
+LINK OF THE PUBLISHED GAME: https://oneirius.github.io/game-pooper-scooper/
+
+LINK OF THE SLIDES FOR THE PRESENTATION:  --pending--
