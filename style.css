@@ -3,3 +3,27 @@
     margin: 0px;
     font-family: monospace;
 }
+
+div {
+    border: 1px solid red;
+}
+/*
+h1 {
+    padding: 5vh 0;
+    text-align: center;
+}
+*/
+#game-container {
+    width: 800px;
+    height: 640px;
+    position: relative;
+    margin: 0 5vw
+}
+
+#game-board {
+    width: 800px;
+    height: 640px;
+    position: relative;
+    transform: translateY(-17px);
+    overflow: hidden;
+}
