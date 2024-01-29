@@ -12,6 +12,8 @@ const player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
 
 let gameFrames = 0;
 let enemySpawnFrame = 200;
+const enemySpawnFrameMinimum = 50;
+
 const gameEnemies = [];
 const gamePoops = [];
 
@@ -43,8 +45,10 @@ function enemySpawner() {
     if (gameFrames % enemySpawnFrame === 0) {
         // Spawn Enemy and add to gameEnemies array
         gameEnemies.push(new Enemy(5, "right", "left"));
-        // Reduce enemy spawn timer
-        enemySpawnFrame --;
+        // Reduce enemy spawn timer if it above minimum number of EnemySpawnFrames
+        if (enemySpawnFrame > enemySpawnFrameMinimum) {
+            enemySpawnFrame --;
+        }
     }
 }
 
