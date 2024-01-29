@@ -29,8 +29,8 @@ class Enemy {
         // Set enemy movement direction
         this.moveDirection = direction
 
-        this.poopFrame = 0;
-        this.poopSpawnFrame = 10;
+        this.poopSpawnFrame = 100;
+        this.poopFrame = Math.floor(Math.random()*(this.poopSpawnFrame));
 
         // Set element position
         this.updatePosition();
@@ -75,6 +75,7 @@ class Enemy {
         this.poopFrame ++;
         if (this.poopFrame % this.poopSpawnFrame === 0) {
             gamePoops.push(new Poop(this.x, this.y, this.width));
+            this.poopFrame = Math.floor(Math.random()*(this.poopSpawnFrame));
         }
     }
 }

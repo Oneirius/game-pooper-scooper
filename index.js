@@ -15,7 +15,11 @@ let enemySpawnFrame = 200;
 const gameEnemies = [];
 const gamePoops = [];
 
-
+let playerHorVelPos = 0;
+let playerHorVelNeg = 0;
+let playerVerVelPos = 0;
+let playerVerVelNeg = 0;
+playerInputs();
 
 
 
@@ -25,14 +29,15 @@ requestAnimationFrame(gameLoop);
 
 
 function gameLoop() {
-    gameFrames ++;
-    enemySpawner();
-    player.move();
-    gameEnemies.forEach((enemy)=> {
+        gameFrames ++;
+        enemySpawner();
+        player.move(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg);
+        gameEnemies.forEach((enemy)=> {
         enemy.move();
     })
     requestAnimationFrame(gameLoop);
 }
+
 
 function enemySpawner() {
     if (gameFrames % enemySpawnFrame === 0) {
@@ -41,4 +46,59 @@ function enemySpawner() {
         // Reduce enemy spawn timer
         enemySpawnFrame --;
     }
+}
+
+function playerInputs() {
+    // Check for Left Movement Key Up/Down
+    // And apply corresponding Left velocity
+    document.addEventListener("keydown", (event)=> {
+        if (event.code  === "ArrowLeft") {
+            playerHorVelNeg = 1;
+        }
+    })
+    document.addEventListener("keyup", (event)=> {
+        if (event.code  === "ArrowLeft") {
+            playerHorVelNeg = 0;
+        }
+    })
+    
+    // Check for Right Movement Key Up/Down
+    // And apply corresponding Left velocity
+    document.addEventListener("keydown", (event)=> {
+        if (event.code  === "ArrowRight") {
+            playerHorVelPos = 1;
+        }
+    })
+    document.addEventListener("keyup", (event)=> {
+        if (event.code  === "ArrowRight") {
+            playerHorVelPos = 0;
+        }
+    })
+
+    // Check for Up Movement Key Up/Down
+    // And apply corresponding Up velocity
+    document.addEventListener("keydown", (event)=> {
+        if (event.code  === "ArrowUp") {
+            playerVerVelNeg = 1;
+        }
+    })
+    document.addEventListener("keyup", (event)=> {
+        if (event.code  === "ArrowUp") {
+            playerVerVelNeg = 0;
+        }
+    })
+
+            // Check for Down Movement Key Up/Down
+        // And apply corresponding Up velocity
+    document.addEventListener("keydown", (event)=> {
+        if (event.code  === "ArrowDown") {
+            playerVerVelPos = 1;
+        }
+    })
+    document.addEventListener("keyup", (event)=> {
+        if (event.code  === "ArrowDown") {
+            playerVerVelPos = 0;
+        }
+    })
+    console.log(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg)
 }
