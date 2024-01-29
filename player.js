@@ -23,13 +23,18 @@ class Player {
         this.updateEdges();
 
         // Declare player movement variables
-        this.velocity = 5;
+        this.walkVelocity = 5;
+        this.cleanVelocity = 2;
+        this.velocity = this.walkVelocity;
         this.horVelPos = 0;
         this.horVelNeg = 0;
         this.verVelPos = 0;
         this.verVelNeg = 0;
 
         this.updateElementPosition();
+
+        // Poop Collision flag
+        this.poopCollision = false;
     }
     updateElementPosition() {
         this.element.style.left = `${this.x}px`;
@@ -41,61 +46,10 @@ class Player {
         this.topEdge = this.y;
         this.bottomEdge = this.y + this.height;
     }
-    move() {
-        // Check for Left Movement Key Up/Down
-        // And apply corresponding Left velocity
-        document.addEventListener("keydown", (event)=> {
-            if (event.code  === "ArrowLeft") {
-                this.horVelNeg = this.velocity;
-            }
-        })
-        document.addEventListener("keyup", (event)=> {
-            if (event.code  === "ArrowLeft") {
-                this.horVelNeg = 0;
-            }
-        })
-        
-        // Check for Right Movement Key Up/Down
-        // And apply corresponding Left velocity
-        document.addEventListener("keydown", (event)=> {
-            if (event.code  === "ArrowRight") {
-                this.horVelPos = this.velocity;
-            }
-        })
-        document.addEventListener("keyup", (event)=> {
-            if (event.code  === "ArrowRight") {
-                this.horVelPos = 0;
-            }
-        })
-
-        // Check for Up Movement Key Up/Down
-        // And apply corresponding Up velocity
-        document.addEventListener("keydown", (event)=> {
-            if (event.code  === "ArrowUp") {
-                this.verVelNeg = this.velocity;
-            }
-        })
-        document.addEventListener("keyup", (event)=> {
-            if (event.code  === "ArrowUp") {
-                this.verVelNeg = 0;
-            }
-        })
-
-        // Check for Down Movement Key Up/Down
-        // And apply corresponding Up velocity
-        document.addEventListener("keydown", (event)=> {
-            if (event.code  === "ArrowDown") {
-                this.verVelPos = this.velocity;
-            }
-        })
-        document.addEventListener("keyup", (event)=> {
-            if (event.code  === "ArrowDown") {
-                this.verVelPos = 0;
-            }
-        })
+    move(horVelPos, horVelNeg, verVelPos, verVelNeg) {
         // Udate internal player x/y position
-        this.x += this.horVelPos - this.horVelNeg;
-        this.y += this.verVelPos - this.verVelNeg;
+        this.x += (horVelPos - horVelNeg)* this.velocity;
+        this.y += (verVelPos - verVelNeg)* this.velocity;
 
         // Check for boundaries
         this.updateElementPosition();
@@ -122,9 +76,10 @@ class Player {
         }
         this.updateElementPosition();
         this.updateEdges();
-        this.collisionCheck();
+        this.enemyCollisionCheck();
+        this.poopCollisionCheck();
     }
-    collisionCheck() {
+    enemyCollisionCheck() {
         gameEnemies.forEach((enemy) => {
             if (
                 this.leftEdge < enemy.rightEdge &&
@@ -132,9 +87,46 @@ class Player {
                 this.topEdge < enemy.bottomEdge &&
                 this.bottomEdge > enemy.topEdge
             ){
-                console.log("collision detected!")
+                console.log("enemy collision detected!")
             }
-
+        })
+    }
+    poopCollisionCheck() {
+        this.poopCollision = false;
+        gamePoops.forEach((poop) => {
+            /*
+            if (
+                (this.rightEdge > poop.leftEdge && this.topEdge < poop.bottomEdge) ||
+                (this.rightEdge > poop.leftEdge && this.bottomEdge > poop.topEdge) ||
+                (this.leftEdge < poop.rightEdge && this.topEdge < poop.bottomEdge) ||
+                (this.leftEdge < poop.rightEdge && this.bottomEdge > poop.topEdge)
+            */
+           // Check for collision with poop
+           if (
+                this.leftEdge < poop.rightEdge &&
+                this.rightEdge > poop.leftEdge &&
+                this.topEdge < poop.bottomEdge &&
+                this.bottomEdge > poop.topEdge
+            )
+           {
+                // Reduce Poop health
+                poop.health -= 1;
+                if (poop.health <= 0) {
+                    // Despawn poops reduced to 0 or less health
+                    poop.deSpawn();
+                }
+                // Set poop collision flag
+                this.poopCollision = true;                
+                console.log("poop collision detected!", this.velocity)
+            }
+            // Set speed and appearance based on poop collision
+            if (this.poopCollision === true) {
+                this.velocity = this.cleanVelocity;
+                this.element.style.backgroundColor = "#244"
+            } else {
+                this.velocity = this.walkVelocity;
+                this.element.style.backgroundColor = "#04c"
+            }
         })
     }
 }

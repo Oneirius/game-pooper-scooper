@@ -47,8 +47,10 @@ h1 {
 }
 
 .poop {
-    background-color: #422;
+    /* background-color: #422; */
     position: absolute;
     width: 16px;
     height: 16px;
+    opacity: 1;
+    color: black
 }

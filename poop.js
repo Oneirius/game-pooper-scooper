@@ -11,13 +11,21 @@ class Poop {
         this.y = y;
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
+        // Poop Health
+        this.health = size*2;
 
         // Dimensions
         this.width = size;
         this.height = size;
         this.leftEdge = this.x;
-        this.rightEdge = this.y + this.width;
+        this.rightEdge = this.x + this.width;
         this.topEdge = this.y;
         this.bottomEdge = this.y + this.height;
+        this.innerText = `${this.x} ${this.y}`
+    }
+    deSpawn() {
+        this.element.remove();
+        const poopIndex = gamePoops.indexOf(this);
+        gamePoops.splice(poopIndex, 1);
     }
 }
