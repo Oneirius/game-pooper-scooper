@@ -27,3 +27,12 @@ h1 {
     transform: translateY(-17px);
     overflow: hidden;
 }
+
+#player {
+    width: 32px;
+    height: 32px;
+    background-color: #04c;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
