@@ -23,12 +23,7 @@ let playerVerVelPos = 0;
 let playerVerVelNeg = 0;
 playerInputs();
 
-
-
-
-
 requestAnimationFrame(gameLoop);
-
 
 function gameLoop() {
         gameFrames ++;
