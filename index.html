@@ -9,18 +9,31 @@
     <link rel="stylesheet" href="./style.css" /> 
   </head>
   <body>
-    <h1>Pooper Scooper!</h1>
+    <header>
+      <h1>Pooper Scooper!</h1>
+    </header>
     <div id="game-container"><span class="debug">Game container visible</span>
-        <!-- <div id="game-menu"><br>Game menu visible</div> -->
-        <div id="game-board"><br><span class="debug">Game board visible</span>
+        <div id="game-menu"><br>Game menu visible
+          <div id="game-title">
+            <h1>Pooper Scooper!</h1>
+          </div>
+          <div id="menu-buttons">
+            <button class="menu-button" id="button-start">START GAME</button>
+          </div>
+        </div>
+
+        <div id="game-board"><br><br><span class="debug">Game board visible</span>
           <div id="game-lives">Lives: <span id="life-counter"></span></div>
           <div id="game-score">Score: <span id="score-counter"></span></div>
         </div>
-        <!-- <div id="game-results"><br>Game results visible</div> -->
 
+        <div id="game-over"><br><br><br>Game Over visible
+          <button class="menu-button" id="button-restart">RESTART GAME</button>
+          <button class="menu-button" id="button-main-menu">MAIN MENU</button>
+        </div>
     </div>
     
-
+    <script src="./game.js"></script>
     <script src="./enemy.js"></script>
     <script src="./poop.js"></script>
     <script src="./player.js"></script>

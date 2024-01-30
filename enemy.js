@@ -18,10 +18,31 @@ class Enemy {
         // Set starting position based on the edge the enemy is spawning from
         switch(spawnEdge) {
             case "right":        
-                this.x = gameBoardWidth-32;
+                this.x = gameBoardWidth+this.width;
                 this.y = Math.floor((Math.random()*gameBoardHeight)-this.height);
                 if (this.y < 0) {
                     this.y = 0;
+                }
+                break;
+            case "left":
+                this.x = -this.width;
+                this.y = Math.floor((Math.random()*gameBoardHeight)-this.height);
+                if (this.y < 0) {
+                    this.y = 0;
+                }
+                break;
+            case "up":
+                this.x = Math.floor((Math.random()*gameBoardWidth)-this.width);
+                this.y = -this.height
+                if (this.x < 0) {
+                    this.x = 0;
+                }
+                break;
+            case "down":
+                this.x = Math.floor((Math.random()*gameBoardWidth)-this.width);
+                this.y = gameBoardHeight+this.height
+                if (this.x < 0) {
+                    this.x = 0;
                 }
                 break;
         }
@@ -51,16 +72,39 @@ class Enemy {
             case "left":
                 this.x -= this.velocity;
                 break;
+            case "right":
+                this.x += this.velocity;
+                break;
+            case "down":
+                this.y += this.velocity;
+                break;
+            case "up":
+                this.y -= this.velocity;
+                break;
         }
         this.updatePosition();
         this.updateEdges();
-        this.spawnPoop();
         this.checkForBoundaries();
     }
     checkForBoundaries() {
         switch(this.moveDirection) {
             case "left":
                 if (this.x <= (0 - this.width)) {
+                    this.deSpawn();
+                }
+                break;
+            case "right":
+                if (this.x >= (gameBoardWidth + this.width)) {
+                    this.deSpawn();
+                }
+                break;
+            case "down":
+                if (this.y > (gameBoardHeight + this.height)) {
+                    this.deSpawn();
+                }
+                break;
+            case "up":
+                if (this.y <= (0 - this.height)) {
                     this.deSpawn();
                 }
                 break;

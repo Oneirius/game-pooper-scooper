@@ -39,6 +39,9 @@ class Player {
 
         // Poop Collision flag
         this.poopCollision = false;
+
+        //Bind player.move to this object
+        this.move = this.move.bind(this);
     }
     updateElementPosition() {
         this.element.style.left = `${this.x}px`;
@@ -92,13 +95,20 @@ class Player {
                 this.bottomEdge > enemy.topEdge
             ){
                 if (this.invincibilityFrames < 0) {
-                    gameLives --;
+                    game.lives --;
+                    game.healthCheck();
                     this.invincibilityFrames = this.invincibilityFramesMax;
-                    gameLivesElement.innerText = `${gameLives}`;
+                    game.updateLives();
                 }
                 //console.log("enemy collision detected!")
             }
         })
+    }
+    invincibilityCountDown() {
+        if (this.invincibilityFrames >= 0) {
+            this.invincibilityFrames  --;
+            this.element.style.backgroundColor = "#990";
+        }
     }
     poopCollisionCheck() {
         this.poopCollision = false;
@@ -110,15 +120,18 @@ class Player {
                 this.bottomEdge > poop.topEdge ) {
                 // Reduce Poop health
                 poop.health -= 1;
+                game.healthCheck();
+                // Check if poop health is <= 0
                 if (poop.health <= 0) {
-                    gameScore += poop.scoreValue;
-                    gameScoreElement.innerText = `${gameScore}`;
+                    // Increase score
+                    game.score += poop.scoreValue;
+                    // Increase score UI
+                    game.updateScore();
                     // Despawn poops reduced to 0 or less health
                     poop.deSpawn();
                 }
                 // Set poop collision flag
-                this.poopCollision = true;                
-                console.log("poop collision detected!", this.velocity)
+                this.poopCollision = true;
             }
         })
         this.updateSpeed();
@@ -131,12 +144,6 @@ class Player {
         } else {
             this.velocity = this.cleanVelocity;
             this.element.style.backgroundColor = "#244"
-        }
-    }
-    invincibilityCountDown() {
-        if (this.invincibilityFrames >= 0) {
-            this.invincibilityFrames  --;
-            this.element.style.backgroundColor = "#990";
         }
     }
 }

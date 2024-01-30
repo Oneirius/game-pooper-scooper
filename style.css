@@ -13,6 +13,8 @@ h1 {
     text-align: center;
 }
 */
+
+/* GAME CONTAINER */
 #game-container {
     width: 800px;
     height: 640px;
@@ -21,14 +23,39 @@ h1 {
     text-align: end;
 }
 
-#game-board {
+/* GAME SCREENS*/
+#game-menu {
+    visibility: visible;
+    position: absolute;
     width: 800px;
     height: 640px;
-    position: relative;
-    transform: translateY(-17px);
-    overflow: hidden;
+    top: 0;
+    background-color: #fdd;
 }
 
+#game-board {
+    visibility: hidden;
+    position: absolute;
+    width: 800px;
+    height: 640px;
+    top: 0;
+    overflow: hidden;
+    border: 1px solid #f0f;
+    background-color: #dfd;
+}
+
+#game-over {
+    visibility: hidden;
+    position: absolute;
+    width: 800px;
+    height: 640px;
+    top: 0;
+    background-color: #ddf;
+}
+
+/* GAME MENU ELEMENTS */
+
+/* GAME BOARD ELEMENTS*/
 #player {
     width: 32px;
     height: 32px;
@@ -71,3 +98,6 @@ h1 {
     font-size: 20px;
     font-weight:bolder;
 }
+
+
+/* GAME OVER ELEMENTS */
