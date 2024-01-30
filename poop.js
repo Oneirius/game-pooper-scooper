@@ -12,7 +12,8 @@ class Poop {
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
         // Poop Health
-        this.health = size*2;
+        this.health = 5;
+        this.scoreValue = 1;
 
         // Dimensions
         this.width = size;

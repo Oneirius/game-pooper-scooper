@@ -33,6 +33,10 @@ class Player {
 
         this.updateElementPosition();
 
+        // Invincibility Timer
+        this.invincibilityFramesMax = 50;
+        this.invincibilityFrames = -1;
+
         // Poop Collision flag
         this.poopCollision = false;
     }
@@ -87,20 +91,18 @@ class Player {
                 this.topEdge < enemy.bottomEdge &&
                 this.bottomEdge > enemy.topEdge
             ){
-                console.log("enemy collision detected!")
+                if (this.invincibilityFrames < 0) {
+                    gameLives --;
+                    this.invincibilityFrames = this.invincibilityFramesMax;
+                    gameLivesElement.innerText = `${gameLives}`;
+                }
+                //console.log("enemy collision detected!")
             }
         })
     }
     poopCollisionCheck() {
         this.poopCollision = false;
         gamePoops.forEach((poop) => {
-            /*
-            if (
-                (this.rightEdge > poop.leftEdge && this.topEdge < poop.bottomEdge) ||
-                (this.rightEdge > poop.leftEdge && this.bottomEdge > poop.topEdge) ||
-                (this.leftEdge < poop.rightEdge && this.topEdge < poop.bottomEdge) ||
-                (this.leftEdge < poop.rightEdge && this.bottomEdge > poop.topEdge)
-            */
            // Check for collision with poop
            if (
                 this.leftEdge < poop.rightEdge &&
@@ -112,6 +114,8 @@ class Player {
                 // Reduce Poop health
                 poop.health -= 1;
                 if (poop.health <= 0) {
+                    gameScore += poop.scoreValue;
+                    gameScoreElement.innerText = `${gameScore}`;
                     // Despawn poops reduced to 0 or less health
                     poop.deSpawn();
                 }
@@ -128,5 +132,11 @@ class Player {
                 this.element.style.backgroundColor = "#04c"
             }
         })
+    }
+    invincibilityCountDown() {
+        if (this.invincibilityFrames >= 0) {
+            this.invincibilityFrames  --;
+            this.element.style.backgroundColor = "#990";
+        }
     }
 }
