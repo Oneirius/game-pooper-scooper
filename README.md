@@ -20,13 +20,13 @@ The approach for this game is to use classes and object-oriented programming.
 
 ## MVP
 
-- Have a game board
-- Have a player
-- Have a score
-- Have enemies that dash across the screen from all edges
-- Enemies leave poop behind randomly
-- Player has to stand on poop to clean it
-- Standing in poop slows down the player
+- Have a game board ./
+- Have a player ./
+- Have a score 
+- Have enemies that dash across the screen from all edges  - Left ./
+- Enemies leave poop behind randomly ./
+- Player has to stand on poop to clean it ./
+- Standing in poop slows down the player ./
 - Cleaning up poop increases the player's score
 
 ## Backlog
