@@ -104,13 +104,10 @@ class Player {
         this.poopCollision = false;
         gamePoops.forEach((poop) => {
            // Check for collision with poop
-           if (
-                this.leftEdge < poop.rightEdge &&
+           if ( this.leftEdge < poop.rightEdge &&
                 this.rightEdge > poop.leftEdge &&
                 this.topEdge < poop.bottomEdge &&
-                this.bottomEdge > poop.topEdge
-            )
-           {
+                this.bottomEdge > poop.topEdge ) {
                 // Reduce Poop health
                 poop.health -= 1;
                 if (poop.health <= 0) {
@@ -123,11 +120,11 @@ class Player {
                 this.poopCollision = true;                
                 console.log("poop collision detected!", this.velocity)
             }
-            // Set speed and appearance based on poop collision
-            
         })
+        this.updateSpeed();
     }
     updateSpeed() {
+        // Set speed and appearance based on poop collision
         if (this.poopCollision === false || gamePoops.length === 0) {
             this.velocity = this.walkVelocity;
             this.element.style.backgroundColor = "#04c"
