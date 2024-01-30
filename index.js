@@ -6,6 +6,15 @@ const gameBoardElement = document.querySelector("#game-board");
 const gameBoardWidth = gameBoardElement.getBoundingClientRect().width;
 const gameBoardHeight = gameBoardElement.getBoundingClientRect().height;
 
+let gameLives = 3;
+const gameLivesElement = document.querySelector("#life-counter");
+gameLivesElement.innerText = `${gameLives}`;
+
+let gameScore = 0;
+const gameScoreElement = document.querySelector("#score-counter");
+gameScoreElement.innerText = `${gameScore}`;
+
+
 
 // Create player entity
 const player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
@@ -29,8 +38,10 @@ function gameLoop() {
         gameFrames ++;
         enemySpawner();
         player.move(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg);
+        player.invincibilityCountDown();
         gameEnemies.forEach((enemy)=> {
         enemy.move();
+        console.log(player.invincibilityFrames)
     })
     requestAnimationFrame(gameLoop);
 }
@@ -99,5 +110,5 @@ function playerInputs() {
             playerVerVelPos = 0;
         }
     })
-    console.log(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg)
+    //console.log(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg)
 }
