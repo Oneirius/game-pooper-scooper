@@ -124,14 +124,17 @@ class Player {
                 console.log("poop collision detected!", this.velocity)
             }
             // Set speed and appearance based on poop collision
-            if (this.poopCollision === true) {
-                this.velocity = this.cleanVelocity;
-                this.element.style.backgroundColor = "#244"
-            } else {
-                this.velocity = this.walkVelocity;
-                this.element.style.backgroundColor = "#04c"
-            }
+            
         })
+    }
+    updateSpeed() {
+        if (this.poopCollision === false || gamePoops.length === 0) {
+            this.velocity = this.walkVelocity;
+            this.element.style.backgroundColor = "#04c"
+        } else {
+            this.velocity = this.cleanVelocity;
+            this.element.style.backgroundColor = "#244"
+        }
     }
     invincibilityCountDown() {
         if (this.invincibilityFrames >= 0) {
