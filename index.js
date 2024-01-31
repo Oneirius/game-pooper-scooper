@@ -123,26 +123,26 @@ function updateGameOverElements() {
 }
 
 endAssessmentMessageArray = [
-  "Did you even try?!",                 //0
-  "I think you need to try harder...",  //1
-  "I know you can do better...",        //2
-  "I think you can do better",          //3
-  "A good attempt, take another shot!", //4
-  "Acceptable, but could be better!",   //5
-  "Not bad!",                           //6
-  "Pretty decent!",                     //7
-  "Nicely done!",                       //8
-  "Pretty good!",                       //9
-  "Good!",                              //10
-  "Very nice!",                         //11
-  "You did well!",                      //12
-  "Well done!",                         //13
-  "Impressive!",                        //14
-  "Wow!",                               //15
-  "WOW!!",                              //16
-  "Holy scoop!",                        //17
-  "Incredible!!!",                      //18
-  "King Scoopa in da hizzouse!"         //19
+  "Did you even try?!",                               //0
+  "Hmm...",                                           //1
+  "I was expecing better...",                         //2
+  "I think you can do better!",                       //3
+  "A good attempt, take another shot!",               //4
+  "Acceptable, but there's room for improvement!",    //5
+  "Pretty decent!",                                   //7
+  "Not bad!",                                         //6
+  "Nicely done!",                                     //8
+  "Pretty good!",                                     //9
+  "Good!",                                            //10
+  "Very nice!",                                       //11
+  "You did well!",                                    //12
+  "Well done!",                                       //13
+  "Impressive!",                                      //14
+  "Wow, you're a natural at this!",                   //15
+  "WOW!!",                                            //16
+  "Holy scoop!",                                      //17
+  "Incredible!!!",                                    //18
+  "King Scoopa in da hizzouse!"                       //19
 ]
 
 function scoreAssessment(score) {
@@ -150,7 +150,41 @@ function scoreAssessment(score) {
     return  endAssessmentMessageArray[0];
   } else if (score <= 5 ){
     return endAssessmentMessageArray[1];
-  } else {
+  } else if (score <= 10 ){
+    return endAssessmentMessageArray[2];
+  } else if (score <= 20 ){
+    return endAssessmentMessageArray[3];
+  } else if (score <= 40 ){
+    return endAssessmentMessageArray[4];
+  } else if (score <= 75 ){
+    return endAssessmentMessageArray[5];
+  } else if (score <= 150 ){
+    return endAssessmentMessageArray[6];
+  } else if (score <= 250 ){
+    return endAssessmentMessageArray[7];
+  } else if (score <= 450 ){
+    return endAssessmentMessageArray[8];
+  } else if (score <= 750 ){
+    return endAssessmentMessageArray[9];
+  } else if (score <= 1000 ){
+    return endAssessmentMessageArray[10];
+  } else if (score <= 1200 ){
+    return endAssessmentMessageArray[11];
+  } else if (score <= 1350 ){
+    return endAssessmentMessageArray[12];
+  } else if (score <= 1500 ){
+    return endAssessmentMessageArray[13];
+  } else if (score <= 1600 ){
+    return endAssessmentMessageArray[14];
+  } else if (score <= 1700 ){
+    return endAssessmentMessageArray[15];
+  } else if (score <= 1800 ){
+    return endAssessmentMessageArray[16];
+  } else if (score <= 1900 ){
+    return endAssessmentMessageArray[17];
+  } else if (score <= 2000 ){
+    return endAssessmentMessageArray[18];
+  } else if (score <= 2500 ){
     return endAssessmentMessageArray[19];
-  }
+  } 
 }
