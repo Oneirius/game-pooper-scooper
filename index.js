@@ -122,69 +122,51 @@ function updateGameOverElements() {
   // Update the text insde the End Score element
 }
 
-endAssessmentMessageArray = [
-  "Did you even try?!",                               //0
-  "Hmm...",                                           //1
-  "I was expecing better...",                         //2
-  "I think you can do better!",                       //3
-  "A good attempt, take another shot!",               //4
-  "Acceptable, but there's room for improvement!",    //5
-  "Pretty decent!",                                   //7
-  "Not bad!",                                         //6
-  "Nicely done!",                                     //8
-  "Pretty good!",                                     //9
-  "Good!",                                            //10
-  "Very nice!",                                       //11
-  "You did well!",                                    //12
-  "Well done!",                                       //13
-  "Impressive!",                                      //14
-  "Wow, you're a natural at this!",                   //15
-  "WOW!!",                                            //16
-  "Holy scoop!",                                      //17
-  "Incredible!!!",                                    //18
-  "King Scoopa in da hizzouse!"                       //19
+// Array with ranges and messages for player end score
+const scoreAssessmentRanges = [
+  {min: -999, max: -1, message: "HAX!!!"},
+  {min: 0, max: 0, message: "Did you even try?!"},
+  {min: 1, max: 5, message: "Hmm..."},
+  {min: 6, max: 10, message: "I was expecing better..."},
+  {min: 11, max: 15, message: "I think you can do better!"},
+  {min: 16, max: 22, message: "A good attempt, take another shot!"},
+  {min: 23, max: 23, message: "fnord"},
+  {min: 26, max: 41, message: "Acceptable, but there's room for improvement!"},
+  {min: 42, max: 42, message: "The answer to the ultimate question of Life, the Universe, and Everything!"},
+  {min: 41, max: 68, message: "Pretty decent!"},
+  {min: 69, max: 69, message: "Noice!"},
+  {min: 70, max: 107, message: "Nicely done!"},
+  {min: 108, max: 108, message: "You are destined for the stars!"},
+  {min: 109, max: 350, message: "Pretty good!"},
+  {min: 351, max: 689, message: "Good!"},
+  {min: 690, max: 690, message: "10x Noice!"},
+  {min: 691, max: 750, message: "Good!"},
+  {min: 751, max: 950, message: "Very nice!"},
+  {min: 951, max: 1100, message: "You did well!"},
+  {min: 1101, max: 1200, message: "Well done!"},
+  {min: 1201, max: 1300, message: "Impressive!"},
+  {min: 1301, max: 1400, message: "Wow, you're a natural at this!"},
+  {min: 1401, max: 1500, message: "You might be better than me!"},
+  {min: 1501, max: 1600, message: "Incredible!!!"},
+  {min: 1601, max: 1700, message: "Holy Poop!"},
+  {min: 1701, max: 1800, message: "Holy Scoop!"},
+  {min: 1801, max: 1900, message: "King Scoopa in da hizzouse!"},
+  {min: 1901, max: 2000, message: "OK, you're probably better than me at my own game!"},
+  {min: 2001, max: 8999, message: "Your dedication is laudable! Can you reach 10,000?"},
+  {min: 9000, max: 9000, message: "WHAT 9000?!"},
+  {min: 9000, max: 10000, message: "IT'S OVER 9000!!!"},
+  {min: 10001, max: 99999, message: "SUPA SCOOPA! Can you reach 100,000?"},
+  {min: 100000, max: 999999, message: "Godlike! But can you reach 1,000,000 and become a true legend?!"},
+  {min: 1000000, max: 9999999, message: "Legend! Show me a screenshot - @vanther on twitter!"},
+  
+// Add an entry specifically for 23, 42, 69, 108
 ]
 
+// Function to determine the assessment message based on the player's final score
 function scoreAssessment(score) {
-    if ( score === 0) {
-    return  endAssessmentMessageArray[0];
-  } else if (score <= 5 ){
-    return endAssessmentMessageArray[1];
-  } else if (score <= 10 ){
-    return endAssessmentMessageArray[2];
-  } else if (score <= 20 ){
-    return endAssessmentMessageArray[3];
-  } else if (score <= 40 ){
-    return endAssessmentMessageArray[4];
-  } else if (score <= 75 ){
-    return endAssessmentMessageArray[5];
-  } else if (score <= 150 ){
-    return endAssessmentMessageArray[6];
-  } else if (score <= 250 ){
-    return endAssessmentMessageArray[7];
-  } else if (score <= 450 ){
-    return endAssessmentMessageArray[8];
-  } else if (score <= 750 ){
-    return endAssessmentMessageArray[9];
-  } else if (score <= 1000 ){
-    return endAssessmentMessageArray[10];
-  } else if (score <= 1200 ){
-    return endAssessmentMessageArray[11];
-  } else if (score <= 1350 ){
-    return endAssessmentMessageArray[12];
-  } else if (score <= 1500 ){
-    return endAssessmentMessageArray[13];
-  } else if (score <= 1600 ){
-    return endAssessmentMessageArray[14];
-  } else if (score <= 1700 ){
-    return endAssessmentMessageArray[15];
-  } else if (score <= 1800 ){
-    return endAssessmentMessageArray[16];
-  } else if (score <= 1900 ){
-    return endAssessmentMessageArray[17];
-  } else if (score <= 2000 ){
-    return endAssessmentMessageArray[18];
-  } else if (score <= 2500 ){
-    return endAssessmentMessageArray[19];
-  } 
+  for (const range of scoreAssessmentRanges) {
+    if (score >= range.min && score <= range.max) {
+      return range.message;
+    }
+  }
 }
