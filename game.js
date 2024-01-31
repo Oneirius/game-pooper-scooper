@@ -17,8 +17,11 @@ class Game {
     this.frames = 0;
 
     // Enemy Spawning Variables
-    this.enemySpawnFrame = 50;
-    this.enemySpawnFrameMinimum = 50;
+    this.enemySpawnFrame = 100;
+    this.enemySpawnFrameMinimum = 10;
+    this.enemySpawnDirectionFrame = 500;
+    this.enemySpawnDirections = 0;
+
 
     // Initialize Key listeners
     this.playerInputs();
@@ -28,12 +31,8 @@ class Game {
   }
 
   // METHODS
-  updateLives() {
-    gameLivesElement.innerText = `${this.lives}`;
-  }
-  updateScore() {
-    gameScoreElement.innerText = `${this.score}`;
-  }
+  updateLives() { gameLivesElement.innerText = `${this.lives}`; }
+  updateScore() { gameScoreElement.innerText = `${this.score}`; }
   healthCheck() {
     if (game.lives <= 0) {
       this.isOver = true;
@@ -117,13 +116,21 @@ class Game {
     });
     //console.log(playerHorVelPos, playerHorVelNeg, playerVerVelPos, playerVerVelNeg)
   }
-  spawnEnemies(enSpawnDir) {
+  
+  addSpawnDirection() {
+    if (this.frames % this.enemySpawnDirectionFrame === 0 && this.enemySpawnDirections < enemySpawnDirectionChoices.length) {
+      this.enemySpawnDirections ++;
+      this.enemySpawnDirectionFrame += this.enemySpawnDirectionFrame;
+      console.log(this.enemySpawnDirections, this.enemySpawnDirectionFrame);
+    }
+  }
+  spawnEnemies() {
     if (this.frames % this.enemySpawnFrame === 0) {
       if (!this.isOver) {
         // Spawn Enemy and add to enemies array
         const spawnDirection =
-          enemySpawnDirections[
-            Math.floor(Math.random() * enemySpawnDirections.length)
+          enemySpawnDirectionChoices[
+            Math.floor(Math.random() * this.enemySpawnDirections)
           ];
         let enemyMoveDirection = "";
         switch (spawnDirection) {
@@ -151,9 +158,10 @@ class Game {
         );
         // Reduce enemy spawn timer if it above minimum number of EnemySpawnFrames
         if (this.enemySpawnFrame > this.enemySpawnFrameMinimum) {
-          this.enemySpawnFrame--;
+          this.enemySpawnFrame -=5;
         }
       }
     }
   }
+
 }
