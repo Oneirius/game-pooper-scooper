@@ -29,7 +29,7 @@ const buttonGameStart = document.querySelector("#button-start");
 buttonGameStart.onclick = () => {
     switchScreen(gameBoardElement);
     game = new Game();
-    requestAnimationFrame(gameLoop);
+    initializeGame();
 }
 
 // GAME OVER LOGIC
@@ -38,7 +38,7 @@ const buttonGameRestart = document.querySelector("#button-restart");
 buttonGameRestart.onclick = () => { 
     switchScreen(gameBoardElement);
     game = new Game();
-    requestAnimationFrame(gameLoop);
+    initializeGame();
 }
 
 const buttonMainMenu = document.querySelector("#button-main-menu");
@@ -54,12 +54,8 @@ function switchScreen(screen) {
 }
 
 // Enemy spawn direction variables
-//const enemySpawnDirectionChoices = ["left", "right", "up", "down"];
-const enemySpawnDirections = ["left", "right", "up", "down"];
-//enemySpawnDirections.push(enemySpawnDirectionChoices[0]);
-//enemySpawnDirectionChoices.shift();
-
-
+const allSpawnDirections = ["left", "right", "up", "down"];
+let enemySpawnDirectionChoices = [];
 
 // Declare player directional velocity variables
 let playerHorVelPos = 0;
@@ -71,7 +67,8 @@ let playerVerVelNeg = 0;
 function gameLoop() {
   if (gameBoardElement.style.visibility === 'visible') {
     game.frames++;
-    game.spawnEnemies(enemySpawnDirections);
+    game.spawnEnemies();
+    game.addSpawnDirection();
     game.player.move(
       playerHorVelPos,
       playerHorVelNeg,
@@ -85,4 +82,15 @@ function gameLoop() {
     });
     requestAnimationFrame(gameLoop);
   }
+}
+
+function randomizeSpawnDirectionOrder() {
+  enemySpawnDirectionChoices = [...allSpawnDirections];
+  enemySpawnDirectionChoices.sort(()=>(Math.random() > .5) ? 1 : -1)
+  console.log(enemySpawnDirectionChoices);
+}
+
+function initializeGame() {
+  randomizeSpawnDirectionOrder();
+  requestAnimationFrame(gameLoop);
 }
