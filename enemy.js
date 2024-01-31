@@ -112,14 +112,14 @@ class Enemy {
     }
     deSpawn() {
         this.element.remove();
-        const enemyIndex = gameEnemies.indexOf(this);
-        gameEnemies.splice(enemyIndex, 1);
+        const enemyIndex = game.enemies.indexOf(this);
+        game.enemies.splice(enemyIndex, 1);
     }
     spawnPoop() {
         this.poopFrame ++;
         if (this.poopFrame % this.poopSpawnFrame === 0) {
-            gamePoops.push(new Poop(this.x, this.y, this.width));
-            this.poopFrame = Math.floor(Math.random()*(this.poopSpawnFrame));
+            game.poops.push(new Poop(this.x, this.y, this.width));
+            this.poopFrame = Math.floor(Math.random()*(this.poopSpawnFrame*.5));
         }
     }
 }

@@ -10,20 +10,21 @@ class Game {
     this.updateScore();
 
     // Initialize Enemies and Poops array
-    this.gameEnemies = [];
-    this.gamePoops = [];
+    this.enemies = [];
+    this.poops = [];
 
     // Game Loop Variables
     this.frames = 0;
+
+    // Enemy Spawning Variables
+    this.enemySpawnFrame = 50;
+    this.enemySpawnFrameMinimum = 50;
 
     // Initialize Key listeners
     this.playerInputs();
 
     // Initialize other game objects
     this.player = new Player(384, 308, gameBoardWidth, gameBoardHeight);
-
-    // Initialize game loop
-    requestAnimationFrame(gameLoop);
   }
 
   // METHODS
@@ -36,22 +37,24 @@ class Game {
   healthCheck() {
     if (game.lives <= 0) {
       this.isOver = true;
-      this.gameOver();
+      this.boardCleanup();
     }
   }
-  gameOver() {
+  boardCleanup() {
     if (this.isOver === true) {
-      player.element.remove();
-      gamePoops.forEach((e) => {
-        e.deSpawn();
+      this.enemies.forEach((e) => {
+        e.element.remove();
       });
-      gameEnemies.forEach((e) => {
-        e.deSpawn();
-      });
+      this.enemies = [];
+     this.poops.forEach((e)=>{
+      e.element.remove();
+     })
+      this.poops = [];
+      this.player.element.remove();
       switchScreen(gameOverElement);
+      console.log(this.enemies);
     }
   }
-  
   playerInputs() {
     // Check for Left Movement Key Up/Down
     // And apply corresponding Left velocity
@@ -117,7 +120,7 @@ class Game {
   spawnEnemies(enSpawnDir) {
     if (this.frames % this.enemySpawnFrame === 0) {
       if (!this.isOver) {
-        // Spawn Enemy and add to gameEnemies array
+        // Spawn Enemy and add to enemies array
         const spawnDirection =
           enemySpawnDirections[
             Math.floor(Math.random() * enemySpawnDirections.length)
@@ -137,7 +140,7 @@ class Game {
             enemyMoveDirection = "up";
             break;
         }
-        gameEnemies.push(
+        game.enemies.push(
           new Enemy(
             5,
             spawnDirection,
@@ -147,8 +150,8 @@ class Game {
           )
         );
         // Reduce enemy spawn timer if it above minimum number of EnemySpawnFrames
-        if (enemySpawnFrame > enemySpawnFrameMinimum) {
-          enemySpawnFrame--;
+        if (this.enemySpawnFrame > this.enemySpawnFrameMinimum) {
+          this.enemySpawnFrame--;
         }
       }
     }

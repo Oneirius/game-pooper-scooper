@@ -87,7 +87,7 @@ class Player {
         this.poopCollisionCheck();
     }
     enemyCollisionCheck() {
-        gameEnemies.forEach((enemy) => {
+        game.enemies.forEach((enemy) => {
             if (
                 this.leftEdge < enemy.rightEdge &&
                 this.rightEdge > enemy.leftEdge &&
@@ -112,7 +112,7 @@ class Player {
     }
     poopCollisionCheck() {
         this.poopCollision = false;
-        gamePoops.forEach((poop) => {
+        game.poops.forEach((poop) => {
            // Check for collision with poop
            if ( this.leftEdge < poop.rightEdge &&
                 this.rightEdge > poop.leftEdge &&
@@ -138,7 +138,7 @@ class Player {
     }
     updateSpeed() {
         // Set speed and appearance based on poop collision
-        if (this.poopCollision === false || gamePoops.length === 0) {
+        if (this.poopCollision === false || game.poops.length === 0) {
             this.velocity = this.walkVelocity;
             this.element.style.backgroundColor = "#04c"
         } else {

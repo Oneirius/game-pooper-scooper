@@ -26,7 +26,7 @@ class Poop {
     }
     deSpawn() {
         this.element.remove();
-        const poopIndex = gamePoops.indexOf(this);
-        gamePoops.splice(poopIndex, 1);
+        const poopIndex = game.poops.indexOf(this);
+        game.poops.splice(poopIndex, 1);
     }
 }

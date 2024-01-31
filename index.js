@@ -1,4 +1,7 @@
 // SCREEN ELEMENTS
+// Declare game variable
+let game;
+
 // Declare Game Menu element
 const gameMenuElement = document.querySelector("#game-menu");
 
@@ -15,7 +18,6 @@ const gameLivesElement = document.querySelector("#life-counter");
 // Declare game variable and create UI element for Score
 const gameScoreElement = document.querySelector("#score-counter");
 
-// Create player entity
 
 
 // Declare Game Over element
@@ -26,7 +28,8 @@ const gameOverElement = document.querySelector("#game-over");
 const buttonGameStart = document.querySelector("#button-start");
 buttonGameStart.onclick = () => {
     switchScreen(gameBoardElement);
-    let game = new Game();
+    game = new Game();
+    requestAnimationFrame(gameLoop);
 }
 
 // GAME OVER LOGIC
@@ -35,6 +38,7 @@ const buttonGameRestart = document.querySelector("#button-restart");
 buttonGameRestart.onclick = () => { 
     switchScreen(gameBoardElement);
     game = new Game();
+    requestAnimationFrame(gameLoop);
 }
 
 const buttonMainMenu = document.querySelector("#button-main-menu");
@@ -48,13 +52,6 @@ function switchScreen(screen) {
     gameOverElement.style.visibility = "hidden";
     screen.style.visibility = "visible";
 }
-
-// Declare game frame variable
-
-// Enemy Spawning variables and logic
-// Enemy spawn time variables
-let enemySpawnFrame = 50;
-const enemySpawnFrameMinimum = 50;
 
 // Enemy spawn direction variables
 //const enemySpawnDirectionChoices = ["left", "right", "up", "down"];
@@ -72,19 +69,20 @@ let playerVerVelNeg = 0;
 
 
 function gameLoop() {
-    //this.incrementFrames;
+  if (gameBoardElement.style.visibility === 'visible') {
     game.frames++;
     game.spawnEnemies(enemySpawnDirections);
-    player.move(
+    game.player.move(
       playerHorVelPos,
       playerHorVelNeg,
       playerVerVelPos,
       playerVerVelNeg
     );
-    player.invincibilityCountDown();
-    gameEnemies.forEach((enemy) => {
+    game.player.invincibilityCountDown();
+    game.enemies.forEach((enemy) => {
       enemy.move();
       enemy.spawnPoop();
     });
     requestAnimationFrame(gameLoop);
   }
+}
