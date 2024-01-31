@@ -1,6 +1,6 @@
 class Game {
   constructor() {
-    this.lives = 3;
+    this.lives = 1;
     this.score = 0;
     this.frames = 0;
     this.isOver = false;
@@ -18,7 +18,7 @@ class Game {
 
     // Enemy Spawning Variables
     this.enemySpawnFrame = 100;
-    this.enemySpawnFrameMinimum = 10;
+    this.enemySpawnFrameMinimum = 50;
     this.enemySpawnDirectionFrame = 500;
     this.enemySpawnDirections = 0;
 
@@ -51,6 +51,7 @@ class Game {
       this.poops = [];
       this.player.element.remove();
       switchScreen(gameOverElement);
+      updateGameOverElements();
       console.log(this.enemies);
     }
   }
@@ -149,7 +150,7 @@ class Game {
         }
         game.enemies.push(
           new Enemy(
-            5,
+            3,
             spawnDirection,
             enemyMoveDirection,
             gameBoardWidth,

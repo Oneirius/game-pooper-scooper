@@ -51,9 +51,20 @@ h1 {
     height: 640px;
     top: 0;
     background-color: #ddf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-/* GAME MENU ELEMENTS */
+/* MENU ELEMENTS */
+.menu-button {
+    font-size: 20px;
+    min-width: 200px;
+    min-height: 50px;
+}
+
 
 /* GAME BOARD ELEMENTS*/
 #player {
@@ -101,3 +112,37 @@ h1 {
 
 
 /* GAME OVER ELEMENTS */
+#end-message-random {
+    display: flex;
+    position: absolute;
+    top: 25px;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+#end-score {
+    display: flex;
+    position: absolute;
+    top: 75px;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bolder;
+}
+
+#end-assessment {
+    display: flex;
+    position: absolute;
+    bottom: 125px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#container-end-buttons {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    gap: 50px;
+    font-size: 0px;
+}
