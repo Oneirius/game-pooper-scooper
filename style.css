@@ -31,6 +31,11 @@ h1 {
     height: 640px;
     top: 0;
     background-color: #fdd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 #game-board {
@@ -65,6 +70,20 @@ h1 {
     min-height: 50px;
 }
 
+#game-title {
+    display: flex;
+    position: absolute;
+    top: 25px;
+    font-size: 40px;
+}
+
+#menu-buttons {
+    position: absolute;
+    bottom: 50px;
+}
+
+#button-start {
+}
 
 /* GAME BOARD ELEMENTS*/
 #player {
