@@ -23,10 +23,29 @@ class Poop {
         this.topEdge = this.y;
         this.bottomEdge = this.y + this.height;
         this.innerText = `${this.x} ${this.y}`
+
+        // Golden Poop chance
+        this.poopUpgradeChance = 10;
+        this.poopUpgradeRoll = 0;
+
+        this.poopUpgradeCheck();
     }
     deSpawn() {
         this.element.remove();
         const poopIndex = game.poops.indexOf(this);
         game.poops.splice(poopIndex, 1);
+    }
+    poopUpgradeCheck() {
+        this.goldenPoopRoll = Math.floor(Math.random()*100)+1;
+        if (this.goldenPoopRoll <= (this.poopUpgradeChance*.1)) {
+            this.element.style.border = "2px solid #DD0";
+            this.scoreValue *= 100;
+            console.log("GOLDEN POOP!");
+        } else if (this.goldenPoopRoll <= (this.poopUpgradeChance)) {
+            this.element.style.border = "2px solid #DDD";
+            this.scoreValue *= 10;
+            console.log("Silver Poop!");
+        }
+        
     }
 }
