@@ -6,6 +6,7 @@
     <title>Pooper Scooper!</title>
     <!--Remember to add the ./ to all file paths-->
     <!-- This will prevent issues with github not finding files in the future -->
+    <link rel="icon" href="./assets/art/pooper-scooper.ico" />
     <link rel="stylesheet" href="./style.css" /> 
   </head>
   <body>
@@ -14,7 +15,7 @@
       <h2>by Kumar Daryanani</h2>
       
     </header>
-    <div id="game-container"><span class="debug">Game container visible</span>
+    <div id="game-container"><span class="debug"></span>
         <div id="game-menu">
           <div id="game-title">
             <h3>Pooper Scooper!</h3>
@@ -26,14 +27,14 @@
           </div>
         </div>
 
-        <div id="game-board"><br><br><span class="debug">Game board visible</span>
+        <div id="game-board"><br><br><span class="debug"></span>
           <audio src="./assets/audio/music-game.wav" id="game-music" loop></audio>
           <audio src="./assets/audio/sfx_vacuum.mp3" id="sfx-vacuum"></audio>
           <div id="game-lives">Lives: <span id="life-counter"></span></div>
           <div id="game-score">Score: <span id="score-counter"></span></div>
         </div>
 
-        <div id="game-over"><br><br><br>Game Over visible
+        <div id="game-over"><br><br><br>
           <audio src="./assets/audio/music-gameover.ogg" id="game-over-music"></audio>
           <div id="end-message-random">Random message</div>
           <div id="end-score">Game Score</span></div>
