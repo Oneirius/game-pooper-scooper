@@ -50,9 +50,8 @@ class Game {
      })
       this.poops = [];
       this.player.element.remove();
-      switchScreen(gameOverElement);
+      switchScreen(gameOverElement, gameOverAudioElement);
       updateGameOverElements();
-      console.log(this.enemies);
     }
   }
   playerInputs() {

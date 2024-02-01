@@ -12,23 +12,28 @@
     <header>
       <h1>Pooper Scooper!</h1>
       <h2>by Kumar Daryanani</h2>
+      
     </header>
     <div id="game-container"><span class="debug">Game container visible</span>
         <div id="game-menu">
           <div id="game-title">
             <h3>Pooper Scooper!</h3>
+            <audio src="./assets/audio/music-main.wav" id="menu-music" loop></audio>
           </div>
-          <div id="menu-buttons">
+          <div id="menu-buttons-container">
             <button class="menu-button" id="button-start">START GAME</button>
+            <button class="menu-button" id="button-audio">Audio: OFF</button>
           </div>
         </div>
 
         <div id="game-board"><br><br><span class="debug">Game board visible</span>
+          <audio src="./assets/audio/music-game.wav" id="game-music" loop></audio>
           <div id="game-lives">Lives: <span id="life-counter"></span></div>
           <div id="game-score">Score: <span id="score-counter"></span></div>
         </div>
 
         <div id="game-over"><br><br><br>Game Over visible
+          <audio src="./assets/audio/music-gameover.ogg" id="game-over-music"></audio>
           <div id="end-message-random">Random message</div>
           <div id="end-score">Game Score</span></div>
           <div id="end-assessment">You did so-so</div>

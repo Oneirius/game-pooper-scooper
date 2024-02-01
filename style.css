@@ -75,7 +75,7 @@ footer {
     height: 640px;
     top: 0;
     background-color: #fdd;
-    background-image: url("assets/bg-main-menu.png");
+    background-image: url("assets/art/bg-main-menu.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,7 +109,7 @@ footer {
 }
 
 /* MENU ELEMENTS */
-.menu-button {
+.menu-button { /* The actual buttons */
     font-size: 20px;
     min-width: 200px;
     min-height: 50px;
@@ -121,9 +121,13 @@ footer {
     top: 25px;
     right: 25px;
     font-size: 50px;
+    color: #394a50;
 }
 
-#menu-buttons {
+#menu-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
     position: absolute;
     bottom: 50px;
 }
@@ -131,6 +135,11 @@ footer {
 #button-start {
     background-color: brown;
     color: white;
+}
+
+#button-audio {
+    background-color: #999;
+    color: black;
 }
 
 /* GAME BOARD ELEMENTS*/
