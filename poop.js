@@ -38,14 +38,13 @@ class Poop {
     poopUpgradeCheck() {
         this.goldenPoopRoll = Math.floor(Math.random()*100)+1;
         if (this.goldenPoopRoll <= (this.poopUpgradeChance*.1)) {
-            this.element.style.border = "2px solid #DD0";
+            this.element.style.backgroundImage = "url('./assets/art/spr-poop-gold.png')";
             this.scoreValue *= 100;
         } else if (this.goldenPoopRoll <= (this.poopUpgradeChance)) {
-            this.element.style.border = "2px solid #DDD";
+            this.element.style.backgroundImage = "url('./assets/art/spr-poop-silver.png')";
             this.scoreValue *= 10;
         } else {
-            this.element.style.border = "2px solid #F00";
+            this.element.style.backgroundImage = "url('./assets/art/spr-poop-default.png')";
         }
-        
     }
 }
