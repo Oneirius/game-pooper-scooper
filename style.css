@@ -144,9 +144,10 @@ footer {
 
 /* GAME BOARD ELEMENTS*/
 #player {
-    width: 32px;
+    width: 24px;
     height: 32px;
-    background-color: #04c;
+    /* background-color: #04c; */
+    background-image: url("assets/art/spr-character.png");
     position: absolute;
     top: 0px;
     left: 0px;

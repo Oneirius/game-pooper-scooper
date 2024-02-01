@@ -43,6 +43,8 @@ class Poop {
         } else if (this.goldenPoopRoll <= (this.poopUpgradeChance)) {
             this.element.style.border = "2px solid #DDD";
             this.scoreValue *= 10;
+        } else {
+            this.element.style.border = "2px solid #F00";
         }
         
     }
