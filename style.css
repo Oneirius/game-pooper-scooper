@@ -1,26 +1,62 @@
+/* Clear all default formatting */
 * {
     padding: 0px;
     margin: 0px;
     font-family: monospace;
 }
 
+/* Debug - remove for final */
 div {
     border: 1px solid red;
 }
-/*
-h1 {
-    padding: 5vh 0;
-    text-align: center;
+
+/* Page Styles */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #009;
+    min-height: 100vh;
 }
-*/
+
+header {
+    background-color: #0dd;
+    width: 100%;
+    color: #FFF;
+    background-image: linear-gradient(#000, #009);
+    
+}
+h1 {
+    padding-top: 5vh 0;
+    text-align: center;
+    font-size: 50px;
+}
+h2 {
+    margin-left: 60%;
+    font-size: 15px;
+    padding-bottom: 1vh;
+}
+
+footer {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+    margin-top: auto;
+    color: #FFF;
+    background-image: linear-gradient(#009, #000)
+}
+
 
 /* GAME CONTAINER */
 #game-container {
     width: 800px;
     height: 640px;
     position: relative;
-    margin: 0 5vw;
+    margin: 20px 5vw;
     text-align: end;
+    position: center;
 }
 
 /* GAME SCREENS*/
@@ -74,7 +110,7 @@ h1 {
     display: flex;
     position: absolute;
     top: 25px;
-    font-size: 40px;
+    font-size: 60px;
 }
 
 #menu-buttons {
@@ -165,3 +201,4 @@ h1 {
     gap: 50px;
     font-size: 0px;
 }
+
