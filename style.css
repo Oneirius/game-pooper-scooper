@@ -5,6 +5,14 @@
     font-family: monospace;
 }
 
+/* Custom palette*/
+:root {
+    --hdGradient: linear-gradient(to bottom, #000, #033866);
+    --bgBlue: #033866;
+    --ftGradient: linear-gradient(to top, #000, #033866);
+
+}
+
 /* Debug - remove for final */
 div {
     border: 1px solid red;
@@ -15,7 +23,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #009;
+    background-color: var(--bgBlue);
     min-height: 100vh;
 }
 
@@ -23,7 +31,7 @@ header {
     background-color: #0dd;
     width: 100%;
     color: #FFF;
-    background-image: linear-gradient(#000, #009);
+    background-image: var(--hdGradient);
     
 }
 h1 {
@@ -45,7 +53,7 @@ footer {
     padding-bottom: 2vh;
     margin-top: auto;
     color: #FFF;
-    background-image: linear-gradient(#009, #000)
+    background-image: var(--ftGradient);
 }
 
 
@@ -67,6 +75,7 @@ footer {
     height: 640px;
     top: 0;
     background-color: #fdd;
+    background-image: url("assets/bg-main-menu.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,7 +119,8 @@ footer {
     display: flex;
     position: absolute;
     top: 25px;
-    font-size: 60px;
+    right: 25px;
+    font-size: 50px;
 }
 
 #menu-buttons {
@@ -119,6 +129,8 @@ footer {
 }
 
 #button-start {
+    background-color: brown;
+    color: white;
 }
 
 /* GAME BOARD ELEMENTS*/
