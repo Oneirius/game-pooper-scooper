@@ -91,6 +91,7 @@ footer {
     top: 0;
     overflow: hidden;
     background-color: #dfd;
+    background-image: url("./assets/art/bg-game.png");
 }
 
 #game-over {
