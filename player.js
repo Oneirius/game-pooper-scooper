@@ -140,10 +140,12 @@ class Player {
         // Set speed and appearance based on poop collision
         if (this.poopCollision === false || game.poops.length === 0) {
             this.velocity = this.walkVelocity;
-            this.element.style.backgroundColor = "#04c"
+            this.element.style.backgroundColor = "#04c";
+            audioStop(gameSFXVacuum);            
         } else {
             this.velocity = this.cleanVelocity;
-            this.element.style.backgroundColor = "#244"
+            this.element.style.backgroundColor = "#244";
+            gameSFXVacuum.play();
         }
     }
 }

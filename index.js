@@ -26,7 +26,7 @@ audioSwitchElement.onclick = () => {
     audioSwitchElement.innerText = "Audio: ON";
   } else {
     isAudioOn = false;
-    musicStop(menuAudioElement);
+    audioStop(menuAudioElement);
     audioSwitchElement.style.backgroundColor = "#999";
     audioSwitchElement.style.color = "black";
     audioSwitchElement.innerText = "Audio: OFF";
@@ -41,8 +41,10 @@ const gameBoardElement = document.querySelector("#game-board");
 const gameBoardWidth = gameBoardElement.getBoundingClientRect().width;
 const gameBoardHeight = gameBoardElement.getBoundingClientRect().height;
 
-// Declare game audio element
+// Declare game audio elements
 const gameAudioElement = document.querySelector("#game-music");
+const gameSFXVacuum = document.querySelector("#sfx-vacuum");
+
 
 // Declare game variable and create UI element for Lives
 const gameLivesElement = document.querySelector("#life-counter");
@@ -99,9 +101,9 @@ function switchScreen(screen, audio) {
   screen.style.visibility = "visible";
 
   // Stop playing all audio
-  musicStop(menuAudioElement);
-  musicStop(gameAudioElement);
-  musicStop(gameOverAudioElement);
+  audioStop(menuAudioElement);
+  audioStop(gameAudioElement);
+  audioStop(gameOverAudioElement);
   // Start playing the audio supplied in the paramaters
   isAudioOn ? audio.play() : null;
 }
@@ -244,7 +246,7 @@ function scoreAssessment(score) {
   }
 }
 
-function musicStop(audio) {
+function audioStop(audio) {
   audio.pause();
   audio.currentTime = 0;
 }
