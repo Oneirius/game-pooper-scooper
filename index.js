@@ -12,6 +12,7 @@ const gameMenuElement = document.querySelector("#game-menu");
 // MENU AUDIO ELEMENTS
 // Declare menu audio element
 const menuAudioElement = document.querySelector("#menu-music");
+menuAudioElement.volume = 0.2;
 
 // Declare audio toggle button
 const audioSwitchElement = document.querySelector("#button-audio");
@@ -43,8 +44,9 @@ const gameBoardHeight = gameBoardElement.getBoundingClientRect().height;
 
 // Declare game audio elements
 const gameAudioElement = document.querySelector("#game-music");
+gameAudioElement.volume = 0.2;
 const gameSFXVacuum = document.querySelector("#sfx-vacuum");
-
+gameSFXVacuum.volume = 0.2;
 
 // Declare game variable and create UI element for Lives
 const gameLivesElement = document.querySelector("#life-counter");
@@ -56,8 +58,10 @@ const gameScoreElement = document.querySelector("#score-counter");
 // Declare Game Over element
 const gameOverElement = document.querySelector("#game-over");
 
+
 // Declare game over audio element
 const gameOverAudioElement = document.querySelector("#game-over-music");
+gameOverAudioElement.volume = 0.2;
 
 // Declare game over variables and create UI element for final score
 const endRandomMessageElement = document.querySelector("#end-message-random");
