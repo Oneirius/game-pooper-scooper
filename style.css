@@ -14,9 +14,9 @@
 }
 
 /* Debug - remove for final */
-div {
+/* div {
     border: 1px solid red;
-}
+} */
 
 /* Page Styles */
 body {
@@ -90,7 +90,6 @@ footer {
     height: 640px;
     top: 0;
     overflow: hidden;
-    border: 1px solid #f0f;
     background-color: #dfd;
 }
 
@@ -100,7 +99,7 @@ footer {
     width: 800px;
     height: 640px;
     top: 0;
-    background-color: #ddf;
+    background-image: url("assets/art/bg-game-over.gif");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,6 +112,7 @@ footer {
     font-size: 20px;
     min-width: 200px;
     min-height: 50px;
+    border-radius: 30px;
 }
 
 #game-title {
