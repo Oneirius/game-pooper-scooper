@@ -75,7 +75,7 @@ footer {
     height: 640px;
     top: 0;
     background-color: #fdd;
-    background-image: url("assets/art/bg-main-menu.png");
+    background-image: url("./assets/art/bg-main-menu.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,7 +99,7 @@ footer {
     width: 800px;
     height: 640px;
     top: 0;
-    background-image: url("assets/art/bg-game-over.gif");
+    background-image: url("./assets/art/bg-game-over.gif");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -147,7 +147,7 @@ footer {
     width: 24px;
     height: 32px;
     /* background-color: #04c; */
-    background-image: url("assets/art/spr-character.png");
+    background-image: url("./assets/art/spr-character.png");
     position: absolute;
     top: 0px;
     left: 0px;
