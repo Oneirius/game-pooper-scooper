@@ -15,35 +15,34 @@ class Enemy {
         this.width = this.element.getBoundingClientRect().width;
         this.height = this.element.getBoundingClientRect().height;
 
+        // Set edge at which enemy is spawning
+        this.spawnEdge = spawnEdge;
+
         // Set starting position based on the edge the enemy is spawning from
         switch(spawnEdge) {
             case "right":        
                 this.x = gameBoardWidth+this.width;
                 this.y = Math.floor((Math.random()*gameBoardHeight)-this.height);
-                if (this.y < 0) {
-                    this.y = 0;
-                }
+                if (this.y < 0) {this.y = 0;}
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-left')";
                 break;
             case "left":
                 this.x = -this.width;
                 this.y = Math.floor((Math.random()*gameBoardHeight)-this.height);
-                if (this.y < 0) {
-                    this.y = 0;
-                }
+                if (this.y < 0) {this.y = 0;}
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-right')";
                 break;
             case "up":
                 this.x = Math.floor((Math.random()*gameBoardWidth)-this.width);
                 this.y = -this.height
-                if (this.x < 0) {
-                    this.x = 0;
-                }
+                if (this.x < 0) {this.x = 0;}
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-down')";
                 break;
             case "down":
                 this.x = Math.floor((Math.random()*gameBoardWidth)-this.width);
                 this.y = gameBoardHeight+this.height
-                if (this.x < 0) {
-                    this.x = 0;
-                }
+                if (this.x < 0) {this.x = 0;}
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-up')";
                 break;
         }
 
@@ -56,6 +55,7 @@ class Enemy {
         // Set element position
         this.updatePosition();
         this.updateEdges();
+        this.updateSprite(this.spawnEdge);
     }
     updatePosition() {
         this.element.style.left = `${this.x}px`;
@@ -66,6 +66,22 @@ class Enemy {
         this.rightEdge = this.x + this.width;
         this.topEdge = this.y;
         this.bottomEdge = this.y + this.height;
+    }
+    updateSprite(spawnEdge) {
+        switch(spawnEdge) {
+            case "right":        
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-left.png')";
+                break;
+            case "left":
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-right.png')";
+                break;
+            case "up":
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-down.png')";
+                break;
+            case "down":
+                this.element.style.backgroundImage = "url('./assets/art/spr-enemy-rat-up.png')";
+                break;
+        }
     }
     move() {
         switch(this.moveDirection) {
